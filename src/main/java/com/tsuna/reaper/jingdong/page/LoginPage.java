@@ -6,10 +6,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
-public class LoginPage {
-    private static String userName = "xxxxxxx";
-    private static String passWord = "xxxxxxx";
-    private WebDriver driver;
+public class LoginPage extends PageBase {
+    private final String userName = "";
+    private final String passWord = "";
 
     @FindBy(how = How.LINK_TEXT, linkText = "账户登录")
     private WebElement loginAnchor;
@@ -23,8 +22,8 @@ public class LoginPage {
     @FindBy(how = How.ID, id = "loginsubmit")
     private WebElement loginButton;
 
-    public LoginPage(WebDriver driver) {
-        this.driver = driver;
+    LoginPage(WebDriver driver) {
+        super(driver);
         PageFactory.initElements(driver, this);
     }
 
@@ -44,6 +43,6 @@ public class LoginPage {
 
     public RegisteredHomePage clickLoginSubmitBtn() {
         loginButton.click();
-        return new RegisteredHomePage(driver);
+        return new RegisteredHomePage(getWebDriver());
     }
 }
