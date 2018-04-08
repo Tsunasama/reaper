@@ -1,5 +1,6 @@
 package com.tsuna.reaper.jingdong.facade;
 
+import com.tsuna.reaper.IReaper;
 import com.tsuna.reaper.jingdong.common.ChromeDriverFactory;
 import com.tsuna.reaper.jingdong.page.HomePage;
 import com.tsuna.reaper.jingdong.page.LoginPage;
@@ -7,7 +8,7 @@ import com.tsuna.reaper.jingdong.page.MyJingBeanPage;
 import com.tsuna.reaper.jingdong.page.RegisteredHomePage;
 import org.openqa.selenium.WebDriver;
 
-public class JingDongNetReaper {
+public class JingDongNetReaper implements IReaper {
 
     public HomePage loadHomePage() {
         WebDriver webDriver = ChromeDriverFactory.getDriver();
@@ -25,9 +26,10 @@ public class JingDongNetReaper {
     }
 
     public MyJingBeanPage goToMyJingBeanPage(RegisteredHomePage registeredHomePage) {
-        registeredHomePage.hoverMyJingDongLabel();
-        MyJingBeanPage myJingBeanPage = registeredHomePage.clickMyJingBeanAnchorAndForwardToMyJingBeanPage();
-        registeredHomePage.close();
+        registeredHomePage.enableMyJingBeanAnchor();
+        MyJingBeanPage myJingBeanPage = registeredHomePage.clickMyJingBeanAnchor();
+        myJingBeanPage.closeParentWindow();
+        myJingBeanPage.switchToThisPage();
         return myJingBeanPage;
     }
 }

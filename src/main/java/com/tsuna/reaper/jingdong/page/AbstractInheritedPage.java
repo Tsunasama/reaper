@@ -2,6 +2,9 @@ package com.tsuna.reaper.jingdong.page;
 
 import org.openqa.selenium.WebDriver;
 
+/**
+ * A standard page which is also an 'inherited page',see {@link InheritedPage} and {@link PageBase}
+ */
 public abstract class AbstractInheritedPage extends PageBase implements InheritedPage {
     private String parentHandler;
 
@@ -10,7 +13,7 @@ public abstract class AbstractInheritedPage extends PageBase implements Inherite
         this.parentHandler = parentHandler;
     }
 
-    void switchToParentWindow() {
+    protected void switchToParentWindow() {
         if (parentHandler == null)
             return;
         getWebDriver().switchTo().window(getParentWindowHandle());

@@ -2,6 +2,10 @@ package com.tsuna.reaper.jingdong.page;
 
 import org.openqa.selenium.WebDriver;
 
+/**
+ * This class means a page is a 'standard' page which has many
+ * standard behavior.
+ */
 public abstract class PageBase {
     private String windowHandler;
     private WebDriver driver;
@@ -27,7 +31,7 @@ public abstract class PageBase {
         return windowHandler;
     }
 
-    void switchToThisPage() {
+    public void switchToThisPage() {
         driver.switchTo().window(getWindowHandler());
     }
 }
